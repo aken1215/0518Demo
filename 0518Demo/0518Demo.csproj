@@ -188,6 +188,7 @@
     <Compile Include="Service\ExtensionManager\FileExtensionMangager.cs" />
     <Compile Include="Service\ExtensionManager\IExtensionManagerFactory.cs" />
     <Compile Include="Service\LogAnalyer\LogAnalyer.cs" />
+    <Compile Include="Service\Web\IWebService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />

@@ -6,47 +6,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using _0518Demo.Service.ExtensionManager;
+using _0518Demo.Service.Web;
 
 namespace _0518Demo.Service.LogAnalyer.Tests
 {
     [TestClass()]
     public class LogAnalyerTests
     {
-        [TestMethod()]
-        public void IsValidFileName_NameSupportedExtension_ReturnsTrue()
+        [TestMethod]
+        public void Analyze_TooShortFileName_CallsWebService()
         {
-            FakeExtensionManager myFakeManager = new FakeExtensionManager();
-            myFakeManager.WillBeValid = true;
+            FakeWebService mockService = new FakeWebService();
+            LogAnalyer log = new LogAnalyer(mockService);
 
-            LogAnalyer log = new LogAnalyer(myFakeManager);
+            string tooShortFileName = "abc.txt";
+            log.Analyze(tooShortFileName);
 
-            bool result = log.IsValidLogFileName("short.txt");
-
-            Assert.IsTrue(result);
+            StringAssert.Contains("Filename too short:abc.txt",mockService.LastError);
         }
     }
 
-
-    public class FakeExtensionManager : IExtensionManager
+    public class FakeWebService : IWebService
     {
-        public bool WillBeValid = false;
-
-        public bool IsValid(string fileName)
+        public string LastError;
+        public void LogError(string message)
         {
-            return WillBeValid;
-        }
-    }
-
-    public class FakeExtensionManagerFactory : IExtensionManagerFactory
-    {
-        public bool WillBeValid = false;
-
-        public IExtensionManager Create()
-        {
-            FakeExtensionManager myFakeManager = new FakeExtensionManager();
-            myFakeManager.WillBeValid = true;
-
-            return myFakeManager;
+            LastError = message;
         }
     }
 

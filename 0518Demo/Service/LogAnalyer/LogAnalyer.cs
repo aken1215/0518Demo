@@ -1,4 +1,5 @@
 ﻿using _0518Demo.Service.ExtensionManager;
+using _0518Demo.Service.Web;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,15 +9,18 @@ namespace _0518Demo.Service.LogAnalyer
 {
     public class LogAnalyer
     {
-        private IExtensionManager _manager;
-        internal LogAnalyer(IExtensionManager manager)
+        private IWebService _service;
+        internal LogAnalyer(IWebService service)
         {
-            _manager = manager;
+            _service = service;
         }
 
-        public bool IsValidLogFileName(string fileName)
+        public void Analyze(string fileName)
         {
-            return _manager.IsValid(fileName);
+            if (fileName.Length < 8)
+            {
+                _service.LogError("Filename too short:" + fileName);
+            }
         }
     }
 }
