@@ -13,7 +13,7 @@ namespace _0518Demo.Service.LogAnalyer
         private IWebService _webService;
         private IEMailService _emailService;
 
-        internal LogAnalyer(IWebService webService,IEMailService emailService)
+        internal LogAnalyer(IWebService webService, IEMailService emailService)
         {
             _webService = webService;
             _emailService = emailService;
@@ -27,11 +27,11 @@ namespace _0518Demo.Service.LogAnalyer
                 {
                     _webService.LogError("Filename too short:" + fileName);
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
-                    _emailService.SendEMail("someone@somewhere.com", "cant log", e.Message);
+                    _emailService.SendEMail(new EmailInfo() { To = "someone@somewhere.com", Subject = "cant log", Body = e.Message });
                 }
-               
+
             }
         }
     }

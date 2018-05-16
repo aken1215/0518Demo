@@ -8,6 +8,6 @@ namespace _0518Demo.Service.EMail
 {
     interface IEMailService
     {
-        void SendEMail(string to, string subject, string body);
+        void SendEMail(EmailInfo email);
     }
 }

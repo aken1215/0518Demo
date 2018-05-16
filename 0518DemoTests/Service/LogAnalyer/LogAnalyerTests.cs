@@ -27,11 +27,17 @@ namespace _0518Demo.Service.LogAnalyer.Tests
             string tooShortFileName = "abc.txt";
             log.Analyze(tooShortFileName);
 
-            StringAssert.Contains("someone@somewhere.com", mockEmail.To);
-            StringAssert.Contains("cant log", mockEmail.Subject);
-            StringAssert.Contains("fake exception", mockEmail.Body);
+            var expectedEmail = new EmailInfo()
+            {
+                To = "someone@somewhere.com",
+                Subject = "cant log",
+                Body = "fake exception"
+            };
+
+            Assert.AreEqual(expectedEmail, mockEmail.email);
         }
     }
+
 
     public class FakeWebService : IWebService
     {
@@ -47,15 +53,11 @@ namespace _0518Demo.Service.LogAnalyer.Tests
 
     public class FakeEMailService : IEMailService
     {
-        public string To;
-        public string Subject;
-        public string Body;
+        public EmailInfo email;
 
-        public void SendEMail(string to, string subject, string body)
+        public void SendEMail(EmailInfo emailInfo)
         {
-            To = to;
-            Subject = subject;
-            Body = body;
+            email = emailInfo;
         }
     }
 

@@ -183,6 +183,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\EMail\EmailInfo.cs" />
     <Compile Include="Service\EMail\IEMailService.cs" />
     <Compile Include="Service\ExtensionManager\ExtensionManagerFactory.cs" />
     <Compile Include="Service\ExtensionManager\IExtensionManager.cs" />
