@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using _0518Demo.Service.ExtensionManager;
 using _0518Demo.Service.Web;
 using _0518Demo.Service.EMail;
+using ExpectedObjects;
 
 namespace _0518Demo.Service.LogAnalyer.Tests
 {
@@ -32,7 +33,7 @@ namespace _0518Demo.Service.LogAnalyer.Tests
                 To = "someone@somewhere.com",
                 Subject = "cant log",
                 Body = "fake exception"
-            };
+            }.ToExpectedObject();
 
             Assert.AreEqual(expectedEmail, mockEmail.email);
         }
