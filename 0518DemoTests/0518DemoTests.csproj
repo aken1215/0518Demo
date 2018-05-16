@@ -57,7 +57,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service\DemoTargetTests.cs" />
+    <Compile Include="Service\LogAnalyer\LogAnalyerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
