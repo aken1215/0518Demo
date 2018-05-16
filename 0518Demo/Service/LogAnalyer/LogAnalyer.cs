@@ -1,4 +1,5 @@
-﻿using _0518Demo.Service.ExtensionManager;
+﻿using _0518Demo.Service.EMail;
+using _0518Demo.Service.ExtensionManager;
 using _0518Demo.Service.Web;
 using System;
 using System.Collections.Generic;
@@ -9,17 +10,28 @@ namespace _0518Demo.Service.LogAnalyer
 {
     public class LogAnalyer
     {
-        private IWebService _service;
-        internal LogAnalyer(IWebService service)
+        private IWebService _webService;
+        private IEMailService _emailService;
+
+        internal LogAnalyer(IWebService webService,IEMailService emailService)
         {
-            _service = service;
+            _webService = webService;
+            _emailService = emailService;
         }
 
         public void Analyze(string fileName)
         {
             if (fileName.Length < 8)
             {
-                _service.LogError("Filename too short:" + fileName);
+                try
+                {
+                    _webService.LogError("Filename too short:" + fileName);
+                }
+                catch(Exception e)
+                {
+                    _emailService.SendEMail("someone@somewhere.com", "cant log", e.Message);
+                }
+               
             }
         }
     }
