@@ -19,7 +19,9 @@ namespace _0518Demo.Service.LogAnalyer.Tests
 
             myFakeManager.WillBeValid = true;
 
-            LogAnalyer log = new LogAnalyer(myFakeManager);
+            LogAnalyer log = new LogAnalyer();
+            log.ExtensionManager = myFakeManager;
+
             bool result = log.IsValidLogFileName("short.txt");
 
             Assert.IsTrue(result);

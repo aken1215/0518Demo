@@ -8,16 +8,20 @@ namespace _0518Demo.Service.LogAnalyer
 {
     public class LogAnalyer
     {
-        private IExtensionManager manager;
+        private IExtensionManager _manager; 
+        public IExtensionManager ExtensionManager {
+            get { return _manager; }
+            set { _manager = value; }
+        }
 
-        public LogAnalyer(IExtensionManager mgr)
+        public LogAnalyer()
         {
-            this.manager = mgr;
+            _manager = new FileExtensionMangager();
         }
 
         public bool IsValidLogFileName(string fileName)
         {
-            return manager.IsValid(fileName);
+            return _manager.IsValid(fileName);
         }
     }
 }

@@ -9,7 +9,14 @@ namespace _0518Demo.Service.ExtensionManager
     {
         public bool IsValid(string fileName)
         {
-            return true;
+            if (fileName == "Success.txt")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
