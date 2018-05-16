@@ -16,11 +16,11 @@ namespace _0518Demo.Service.LogAnalyer.Tests
         public void IsValidFileName_NameSupportedExtension_ReturnsTrue()
         {
             FakeExtensionManager myFakeManager = new FakeExtensionManager();
-
             myFakeManager.WillBeValid = true;
 
+            ExtensionManagerFactory.SetManager(myFakeManager);
+
             LogAnalyer log = new LogAnalyer();
-            log.ExtensionManager = myFakeManager;
 
             bool result = log.IsValidLogFileName("short.txt");
 
