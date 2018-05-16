@@ -8,14 +8,15 @@ namespace _0518Demo.Service.LogAnalyer
 {
     public class LogAnalyer
     {
-        public bool IsValidLogFileName(string fileName)
+        private IExtensionManager _manager;
+        internal LogAnalyer(IExtensionManager manager)
         {
-            return GetManager().IsValid(fileName);
+            _manager = manager;
         }
 
-        public virtual IExtensionManager GetManager()
+        public bool IsValidLogFileName(string fileName)
         {
-            return new FileExtensionMangager();
+            return _manager.IsValid(fileName);
         }
     }
 }
