@@ -15,12 +15,9 @@ namespace _0518Demo.Service.LogAnalyer.Tests
         [TestMethod()]
         public void IsValidFileName_NameSupportedExtension_ReturnsTrue()
         {
-            FakeExtensionManager myFakeManager = new FakeExtensionManager();
-            myFakeManager.WillBeValid = true;
+            IExtensionManagerFactory factory = new FakeExtensionManagerFactory();
 
-            ExtensionManagerFactory.SetManager(myFakeManager);
-
-            LogAnalyer log = new LogAnalyer();
+            LogAnalyer log = new LogAnalyer(factory);
 
             bool result = log.IsValidLogFileName("short.txt");
 
@@ -36,6 +33,19 @@ namespace _0518Demo.Service.LogAnalyer.Tests
         public bool IsValid(string fileName)
         {
             return WillBeValid;
+        }
+    }
+
+    public class FakeExtensionManagerFactory : IExtensionManagerFactory
+    {
+        public bool WillBeValid = false;
+
+        public IExtensionManager Create()
+        {
+            FakeExtensionManager myFakeManager = new FakeExtensionManager();
+            myFakeManager.WillBeValid = true;
+
+            return myFakeManager;
         }
     }
 }

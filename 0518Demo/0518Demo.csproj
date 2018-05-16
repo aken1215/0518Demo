@@ -186,6 +186,7 @@
     <Compile Include="Service\ExtensionManager\ExtensionManagerFactory.cs" />
     <Compile Include="Service\ExtensionManager\IExtensionManager.cs" />
     <Compile Include="Service\ExtensionManager\FileExtensionMangager.cs" />
+    <Compile Include="Service\ExtensionManager\IExtensionManagerFactory.cs" />
     <Compile Include="Service\LogAnalyer\LogAnalyer.cs" />
   </ItemGroup>
   <ItemGroup>

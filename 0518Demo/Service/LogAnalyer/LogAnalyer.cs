@@ -10,9 +10,9 @@ namespace _0518Demo.Service.LogAnalyer
     {
         private IExtensionManager _manager; 
 
-        public LogAnalyer()
+        public LogAnalyer(IExtensionManagerFactory factory)
         {
-            _manager = ExtensionManagerFactory.Create();
+            _manager = factory.Create();
         }
 
         public bool IsValidLogFileName(string fileName)

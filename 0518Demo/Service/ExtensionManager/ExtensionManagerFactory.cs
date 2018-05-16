@@ -5,25 +5,11 @@ using System.Web;
 
 namespace _0518Demo.Service.ExtensionManager
 {
-    public static class ExtensionManagerFactory
+    public class ExtensionManagerFactory: IExtensionManagerFactory
     {
-        private static IExtensionManager customManager = null;
-
-        public static IExtensionManager Create()
+        public IExtensionManager Create()
         {
-            if(customManager != null)
-            {
-                return customManager;
-            }
-            else
-            {
-                return new FileExtensionMangager();
-            }
-        }
-
-        public static void SetManager(IExtensionManager mgr)
-        {
-            customManager = mgr;
+            return new FileExtensionMangager();
         }
     }
 }
